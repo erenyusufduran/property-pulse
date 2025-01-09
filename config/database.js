@@ -6,7 +6,6 @@ const connectDb = async () => {
     mongoose.set('strictQuery', true);
 
     if (connected) {
-        console.log('Mongodb is already connected');
         return;
     }
 
@@ -14,7 +13,7 @@ const connectDb = async () => {
         await mongoose.connect(process.env.MONGODB_URI);
         connected = true;
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 

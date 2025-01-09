@@ -4,7 +4,6 @@ import HomeProperties from '../components/HomeProperties';
 import connectDb from '../config/database';
 
 const HomePage = () => {
-  console.log(process.env.MONGODB_URI)
   connectDb()
   return (
     <>
