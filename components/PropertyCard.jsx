@@ -1,6 +1,12 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { FaBed, FaBath, FaRulerCombined, FaMoneyBill, FaMapMarker } from 'react-icons/fa';
+import Image from "next/image";
+import Link from "next/link";
+import {
+  FaBed,
+  FaBath,
+  FaRulerCombined,
+  FaMoneyBill,
+  FaMapMarker,
+} from "react-icons/fa";
 
 const PropertyCard = ({ property }) => {
   const getRateDisplay = () => {
@@ -16,7 +22,14 @@ const PropertyCard = ({ property }) => {
 
   return (
     <div className="rounded-xl shadow-md relative">
-      <Image src={`/images/properties/${property.images[0]}`} alt='property image' width="0" height="0" sizes="100vw" className="w-full h-auto rounded-t-xl" />
+      <Image
+        src={property.images[0]}
+        alt="property image"
+        width="0"
+        height="0"
+        sizes="100vw"
+        className="w-full h-auto rounded-t-xl"
+      />
       <div className="p-4">
         <div className="text-left md:text-center lg:text-left mb-6">
           <div className="text-gray-600">{property.type}</div>
@@ -37,7 +50,8 @@ const PropertyCard = ({ property }) => {
           </p>
           <p>
             <FaRulerCombined className="md:hidden lg:inline" />
-            {property.square_feet} <span className="md:hidden lg:inline">sqft</span>
+            {property.square_feet}{" "}
+            <span className="md:hidden lg:inline">sqft</span>
           </p>
         </div>
 
@@ -72,4 +86,3 @@ const PropertyCard = ({ property }) => {
 };
 
 export default PropertyCard;
-
