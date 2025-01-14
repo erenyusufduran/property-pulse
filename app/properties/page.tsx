@@ -1,10 +1,12 @@
 import PropertyCard from "../../components/PropertyCard";
 import connectDb from "../../config/database";
 import Property from "../../models/Property";
+import { convertToSerializableObject } from "../../utils/convertToObject";
 
 const PropertiesPage = async () => {
   await connectDb();
-  const properties = await Property.find({}).lean()
+  const propertiesDocs = await Property.find().lean();
+  const properties = propertiesDocs.map(convertToSerializableObject);
 
   return (
     <section className="px-4 py-6">
