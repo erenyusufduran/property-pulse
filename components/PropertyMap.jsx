@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { setDefaults, fromAddress } from "react-geocode";
-import Spinner from "./Spinner";
 
 const PropertyMap = ({ property }) => {
   const [lat, setLat] = useState(null);
@@ -42,9 +41,7 @@ const PropertyMap = ({ property }) => {
           latitude: lat,
           longitude: lng,
         });
-        console.log(lat, lng);
       } catch (error) {
-        console.log(error);
         setGeocodeError(true);
       } finally {
         setLoading(false);
