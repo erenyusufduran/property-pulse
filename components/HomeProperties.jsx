@@ -2,6 +2,7 @@ import Link from "next/link";
 import PropertyCard from "./PropertyCard";
 import connectDb from "../config/database";
 import Property from "../models/Property";
+import { convertToSerializableObject } from "../utils/convertToObject";
 
 const HomeProperties = async () => {
   await connectDb();
