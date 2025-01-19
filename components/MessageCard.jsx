@@ -22,7 +22,7 @@ const MessageCard = ({ message }) => {
   const handleDeleteClick = async () => {
     await deleteMessage(message._id);
     setIsDelete(true);
-    setUnreadCount((prevState) => (read ? prevState - 1 : prevState));
+    setUnreadCount((prevState) => (isRead ? prevState : prevState - 1));
     toast.success("Message deleted");
   };
 
