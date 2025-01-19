@@ -1,12 +1,23 @@
 import PropertyCard from "../../components/PropertyCard";
+import Pagination from "../../components/Pagination";
 import connectDb from "../../config/database";
 import Property from "../../models/Property";
 import { convertToSerializableObject } from "../../utils/convertToObject";
 
-const PropertiesPage = async () => {
+const PropertiesPage = async ({ searchParams }) => {
+  const page = parseInt(searchParams.page || "1", 10);
+  const pageSize = parseInt(searchParams.pageSize || "9", 10);
   await connectDb();
-  const propertiesDocs = await Property.find().lean();
+
+  const skip = (page - 1) * pageSize;
+  const total = await Property.countDocuments({});
+  const propertiesDocs = await Property.find()
+    .skip(skip)
+    .limit(pageSize)
+    .lean();
   const properties = propertiesDocs.map(convertToSerializableObject);
+
+  const showPagination = total > pageSize;
 
   return (
     <section className="px-4 py-6">
@@ -19,6 +30,9 @@ const PropertiesPage = async () => {
               <PropertyCard key={property._id as string} property={property} />
             ))}
           </div>
+        )}
+        {showPagination && (
+          <Pagination page={page} pageSize={pageSize} totalItems={total} />
         )}
       </div>
     </section>
